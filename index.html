@@ -7,10 +7,10 @@
     <!-- keeping these off so we can work offline-->
     <!-- <link rel="stylesheet" href="w3-theme-black.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <body bgcolor="#c7a09b">
+    <body bgcolor="#c7a09b" onload="button_size()" onresize="button_size()">
         <div class="bg" id="bg">
 
-            <header class="w3-container w3-theme w3-padding" id="myHeader">
+            <header class="w3-container w3-theme w3-padding" id="myHeader" style="min-width: 600px">
                 <div style="text-align: center" class="w3-display-container">
                     <a class="w3-display-left w3-btn w3-margin-left w3-xlarge w3-text-blue-gray" href="http://trwminvestment.com/who-we-are/">
                         About
@@ -29,18 +29,23 @@
                 </div>
                 
             </header>
-            <br>
-            <br>
-            <br>
+            <div id = "pad" style="min-height: 100px ">
+                
+            </div>
             <div class= "w3-container " >
                 <div class = "w3-half w3-center w3-margin-top " >
-                    <a class="w3-card w3-black w3-button w3-hover-gray w3-padding-64 w3-round-xlarge w3-xxlarge w3-opacity-min " href="https://www.trwealthmanagement.com/" style="min-height: 00px" >Management</a>    
+                    
+                    <a class= "w3-card w3-black w3-button w3-hover-gray w3-round-xlarge w3-padding-64 w3-xxlarge w3-opacity-min " href="https://www.trwealthmanagement.com/" id="manage" >Management</a>        
+
+                    
                 </div>
                 <div class = "w3-half w3-center w3-margin-top">
-                    <a class="w3-card w3-black w3-button w3-hover-gray w3-padding-64 w3-round-xlarge w3-xxlarge w3-opacity-min" href=" http://trwminvestment.com/">Investment</a>
+                    <a class="w3-card w3-black w3-button w3-hover-gray w3-padding-64 w3-round-xlarge w3-xxlarge w3-opacity-min" href=" 
+                    http://trwminvestment.com/" id="invest">Investment</a>
+
                 </div>
             </div>
-
+                <!-- <button onclick="button_size()"> Ders </button> -->
         </div>
     </body>
 </html>
@@ -61,8 +66,50 @@ height: cover;
 width: cover;
 /*opacity: 0.9;*/
 }
+a {
+  text-decoration: none;
+}
 </style>
 
+<script type="text/javascript">
+    function max(a,b){
+        if (a > b){
+            return a;
+        }
+        else {
+            return b;
+        }
+    }
+    function button_size(){
+        var h = window.innerHeight
+        var newHeight = Math.floor(max(0,(h - 400) / 3 ));
+        
+        document.getElementById('pad').style.minHeight = newHeight + "px";
+
+        if (h < 450){
+            var buttons = ["invest", "manage"];
+            for (var i = 0; i < buttons.length; i++) {
+                document.getElementById(buttons[i]).classList.remove("w3-xxlarge");
+                document.getElementById(buttons[i]).classList.add("w3.xlarge");    
+                document.getElementById(buttons[i]).classList.remove("w3-padding-64");
+                document.getElementById(buttons[i]).classList.add("w3-padding-32");    
+            }
+        
+        }
+
+        if (h > 550){
+            var buttons = ["invest", "manage"];
+            for (var i = 0; i < buttons.length; i++) {
+                document.getElementById(buttons[i]).classList.add("w3-xxlarge");
+                document.getElementById(buttons[i]).classList.remove("w3.xlarge");    
+                document.getElementById(buttons[i]).classList.add("w3-padding-64");
+                document.getElementById(buttons[i]).classList.remove("w3-padding-32");    
+            }
+        
+        }
+        
+    }
+</script>
 
 
 
